@@ -1,0 +1,98 @@
+<!-- Función:
+
+Es la página de inicio de la biblioteca.
+Muestra la lista de libros.
+Contiene un menú para navegar a "Gestión de Libros" y "Gestión de Autores". -->
+ 
+<!-- Archivo: /frontend/index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <h1>Bienvenido a la Biblioteca</h1>
+    
+    <h2>Lista de Libros</h2>
+    <button onclick="cargarLibros()">Cargar Libros</button>
+    <ul id="listaLibros"></ul>
+    
+    <h2>Menú Principal</h2>
+    <nav>
+        <ul>
+            <li><a href="libros.html">Gestión de Libros</a></li>
+            <li><a href="autores.html">Gestión de Autores</a></li>
+        </ul>
+    </nav>
+</body>
+</html>
+
+<!--📂 biblioteca
+│── 📂 backend
+│   │── server.js
+│   │── database.js
+│   │── .env
+│   │── 📂 models
+│   │   │── Libro.js
+│   │   │── Autor.js
+│   │── 📂 routes
+│   │   │── libros.js
+│   │   │── autores.js
+│   │── package.json
+│
+│── 📂 frontend
+│   │── index.html
+│   │── crear_libro.html
+│   │── crear_autor.html
+│   │── libros.js
+│   │── autores.js
+│   │── style.css
+│   │── 📂 assets (para imágenes, iconos, etc.)
+
+ Requisitos de Instalación
+📌 Para ejecutar el frontend necesitas:
+
+Un navegador web (Google Chrome, Firefox).
+Un servidor local como Live Server (Extensión de VSCode).
+📌 Pasos para iniciar el frontend:
+
+Abre la carpeta frontend en VSCode.
+Instala la extensión Live Server.
+Haz clic derecho en index.html y selecciona "Open with Live Server"
+-->
+
+<!--EXPLICACIONFRONTEND
+📂 frontend
+│── 📜 index.html
+│── 📜 crear_libro.html
+│── 📜 crear_autor.html
+│── 📜 libros.js
+│── 📜 autores.js
+│── 📜 style.css
+│── 📂 assets/ (opcional)
+│   │── logo.png
+│   │── iconos/
+│   │── estilos/
+-->
+
+
+<!--index.html (Página Principal)
+Es la página inicial de la biblioteca. Aquí el usuario puede ver el listado de libros y navegar a otras opciones.
+
+Muestra una lista de libros disponibles.
+Tiene botones para acceder a la gestión de libros y autores.-->
+
+<!--crear_libro.html (Formulario para Crear Libros)
+Esta página permite a los administradores añadir nuevos libros a la biblioteca.-->
+
+
+<!--crear_autor.html (Formulario para Crear Autores)
+Permite a los administradores añadir nuevos autores a la base de datos.-->
+
+
+<!--crear_libro.html (Formulario para Crear Libros)
+Esta página permite a los administradores añadir nuevos libros a la biblioteca.-->

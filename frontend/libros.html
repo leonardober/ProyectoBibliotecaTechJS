@@ -1,0 +1,69 @@
+<!--FrontEnd libros.html (Gestión de Libros)
+Función:
+
+Permite crear, consultar, modificar y eliminar libros.
+Contiene un formulario para agregar nuevos libros.
+Muestra la lista de libros existentes.
+
+Gestión de libros (crear, consultar, modificar, eliminar).
+-->
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Libros</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <h1>Gestión de Libros</h1>
+
+    <h2>Crear Libro</h2>
+    <form id="crearLibroForm">
+        <input type="text" id="titulo" placeholder="Título" required>
+        <input type="text" id="autor" placeholder="Autor" required>
+        <input type="date" id="fechaEdicion" required>
+        <input type="number" id="numPaginas" placeholder="Número de páginas" required>
+        <input type="number" id="cantidadEjemplares" placeholder="Cantidad de ejemplares" required>
+        <input type="number" id="cantidadDisponibles" placeholder="Ejemplares disponibles" required>
+        <input type="text" id="sinopsis" placeholder="Sinopsis" required>
+        <input type="text" id="tipoPresentacion" placeholder="Tipo de presentación" required>
+        <input type="text" id="tipoLiteratura" placeholder="Tipo de literatura" required>
+        <button type="submit">Crear</button>
+    </form>
+
+    <h2>Lista de Libros</h2>
+    <button onclick="cargarLibros()">Cargar Libros</button>
+    <ul id="listaLibros"></ul>
+</body>
+</html>
+
+<!--📂 biblioteca
+│── 📂 backend
+│   │── server.js
+│   │── database.js
+│   │── .env
+│   │── 📂 models
+│   │   │── Libro.js
+│   │   │── Autor.js
+│   │── 📂 routes
+│   │   │── libros.js
+│   │   │── autores.js
+│   │── package.json
+│
+│── 📂 frontend
+│   │── index.html
+│   │── crear_libro.html
+│   │── crear_autor.html
+│   │── libros.js
+│   │── autores.js
+│   │── style.css
+│   │── 📂 assets (para imágenes, iconos, etc.)
+
+
+crear_libro.html (Formulario para Crear Libros)
+Esta página permite a los administradores añadir nuevos libros a la biblioteca.
+-->

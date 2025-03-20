@@ -1,0 +1,62 @@
+<!--autores.html (Gestión de Autores)
+ Función:
+
+Permite crear, consultar, modificar y eliminar autores.
+Contiene un formulario para agregar nuevos autores.
+Muestra la lista de autores existentes.
+Gestión de autores (crear, consultar, modificar, eliminar).
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Autores</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <h1>Gestión de Autores</h1>
+
+    <h2>Crear Autor</h2>
+    <form id="crearAutorForm">
+        <input type="text" id="nombreAutor" placeholder="Nombre" required>
+        <input type="text" id="nacionalidad" placeholder="Nacionalidad" required>
+        <input type="date" id="fechaNacimiento" placeholder="Fecha de nacimiento" required>
+        <input type="date" id="fechaPublicacion" placeholder="Fecha de publicación del libro" required>
+        <input type="text" id="premios" placeholder="Premios" required>
+        <textarea id="biografia" placeholder="Biografía" required></textarea>
+        <button type="submit">Crear</button>
+    </form>
+
+    <h2>Lista de Autores</h2>
+    <button onclick="cargarAutores()">Cargar Autores</button>
+    <ul id="listaAutores"></ul>
+</body>
+</html>
+
+<!--📂 biblioteca
+│── 📂 backend
+│   │── server.js
+│   │── database.js
+│   │── .env
+│   │── 📂 models
+│   │   │── Libro.js
+│   │   │── Autor.js
+│   │── 📂 routes
+│   │   │── libros.js
+│   │   │── autores.js
+│   │── package.json
+│
+│── 📂 frontend
+│   │── index.html
+│   │── crear_libro.html
+│   │── crear_autor.html
+│   │── libros.js
+│   │── autores.js
+│   │── style.css
+│   │── 📂 assets (para imágenes, iconos, etc.)
+
+crear_autor.html (Formulario para Crear Autores)
+Permite a los administradores añadir nuevos autores a la base de datos.
+-->
