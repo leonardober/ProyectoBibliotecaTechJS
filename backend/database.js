@@ -1,20 +1,24 @@
 
+require('dotenv').config();
+console.log("Conectando a:", process.env.MONGO_URI); // Añade esto para depurar
+
 const mongoose = require('mongoose');
 
 const conectarDB = async () => {
     try {
-        await mongoose.connect(process.env.MONGO_URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
-        console.log('MongoDB Conectado');
+        await mongoose.connect(process.env.MONGO_URI);
+        console.log('✅ Conectado a MongoDB Atlas');
     } catch (error) {
-        console.error('Error al conectar a MongoDB:', error);
+        console.error('❌ Error al conectar a MongoDB:', error);
         process.exit(1);
     }
 };
 
 module.exports = conectarDB;
+
+
+
+/* *npm install mongoose*/
 
 
 /*database.js (Conexión a MongoDB)
@@ -37,7 +41,7 @@ Se importa en server.js.*/
 │── 📜 package.json
 │── 📜 package-lock.json
 │── 📜 .env
-│── 📜 server.js
+│── 📜 app.js
 │── 📜 database.js
 │── 📂 node_modules/
 │── 📂 routes/

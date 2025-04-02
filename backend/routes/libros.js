@@ -7,8 +7,23 @@ const Libro = require('../models/Libro');
 
 // Obtener todos los libros
 router.get('/', async (req, res) => {
-    const libros = await Libro.find();
-    res.json(libros);
+    try {
+        const libros = await Libro.find().populate('autor'); // Trae datos del autor
+        res.json(libros);
+    } catch (error) {
+        res.status(500).json({ error: 'Error al obtener libros' });
+    }
+});
+
+// Obtener un libro por ID
+router.get('/:id', async (req, res) => {
+    try {
+        const libro = await Libro.findById(req.params.id).populate('autor');
+        if (!libro) return res.status(404).json({ error: 'Libro no encontrado' });
+        res.json(libro);
+    } catch (error) {
+        res.status(500).json({ error: 'Error al obtener libro' });
+    }
 });
 
 // Crear un libro
@@ -16,7 +31,7 @@ router.post('/', async (req, res) => {
     try {
         const nuevoLibro = new Libro(req.body);
         await nuevoLibro.save();
-        res.json({ mensaje: 'Libro creado exitosamente' });
+        res.json({ mensaje: 'Libro creado exitosamente', libro: nuevoLibro });
     } catch (error) {
         res.status(500).json({ error: 'Error al crear libro' });
     }
@@ -25,8 +40,9 @@ router.post('/', async (req, res) => {
 // Modificar un libro
 router.put('/:id', async (req, res) => {
     try {
-        await Libro.findByIdAndUpdate(req.params.id, req.body);
-        res.json({ mensaje: 'Libro actualizado' });
+        const libroActualizado = await Libro.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        if (!libroActualizado) return res.status(404).json({ error: 'Libro no encontrado' });
+        res.json({ mensaje: 'Libro actualizado', libro: libroActualizado });
     } catch (error) {
         res.status(500).json({ error: 'Error al actualizar libro' });
     }
@@ -35,7 +51,8 @@ router.put('/:id', async (req, res) => {
 // Eliminar un libro
 router.delete('/:id', async (req, res) => {
     try {
-        await Libro.findByIdAndDelete(req.params.id);
+        const libroEliminado = await Libro.findByIdAndDelete(req.params.id);
+        if (!libroEliminado) return res.status(404).json({ error: 'Libro no encontrado' });
         res.json({ mensaje: 'Libro eliminado' });
     } catch (error) {
         res.status(500).json({ error: 'Error al eliminar libro' });
@@ -43,6 +60,10 @@ router.delete('/:id', async (req, res) => {
 });
 
 module.exports = router;
+
+
+
+
 
 /*
 routes/ (Rutas del Backend)

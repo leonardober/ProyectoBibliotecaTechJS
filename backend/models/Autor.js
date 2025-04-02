@@ -4,16 +4,17 @@ Este archivo maneja las solicitudes HTTP relacionadas con los autores.*/
 const mongoose = require('mongoose');
 
 const AutorSchema = new mongoose.Schema({
-    nombre: String,
-    nacionalidad: String,
-    fechaNacimiento: Date,
-    fechaPublicacion: Date,
-    fechaPublicacion: String,
-    premios: String,
-    biografia: String
+    nombre: { type: String, required: true },
+    nacionalidad: { type: String, required: true },
+    fechaNacimiento: { type: Date, required: true },
+    fechaFallecimiento: { type: Date }, // Puede estar vacío si el autor sigue vivo
+    fechaPublicacion: { type: Date, required: true }, // Fecha de su primera publicación
+    premios: { type: String }, // Lista de premios en texto
+    biografia: { type: String, required: true }
 });
 
 module.exports = mongoose.model('Autor', AutorSchema);
+
 
 /*Define la estructura de los autores en la base de datos.*/
 

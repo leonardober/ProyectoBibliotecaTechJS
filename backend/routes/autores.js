@@ -1,13 +1,26 @@
-/*Define las rutas para crear, consultar, modificar y eliminar autores.*/
-
 const express = require('express');
 const router = express.Router();
 const Autor = require('../models/Autor');
 
 // Obtener todos los autores
 router.get('/', async (req, res) => {
-    const autores = await Autor.find();
-    res.json(autores);
+    try {
+        const autores = await Autor.find();
+        res.json(autores);
+    } catch (error) {
+        res.status(500).json({ error: 'Error al obtener autores' });
+    }
+});
+
+// Obtener un autor por ID
+router.get('/:id', async (req, res) => {
+    try {
+        const autor = await Autor.findById(req.params.id);
+        if (!autor) return res.status(404).json({ error: 'Autor no encontrado' });
+        res.json(autor);
+    } catch (error) {
+        res.status(500).json({ error: 'Error al obtener autor' });
+    }
 });
 
 // Crear un autor
@@ -15,7 +28,7 @@ router.post('/', async (req, res) => {
     try {
         const nuevoAutor = new Autor(req.body);
         await nuevoAutor.save();
-        res.json({ mensaje: 'Autor creado exitosamente' });
+        res.json({ mensaje: 'Autor creado exitosamente', autor: nuevoAutor });
     } catch (error) {
         res.status(500).json({ error: 'Error al crear autor' });
     }
@@ -24,8 +37,9 @@ router.post('/', async (req, res) => {
 // Modificar un autor
 router.put('/:id', async (req, res) => {
     try {
-        await Autor.findByIdAndUpdate(req.params.id, req.body);
-        res.json({ mensaje: 'Autor actualizado' });
+        const autorActualizado = await Autor.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        if (!autorActualizado) return res.status(404).json({ error: 'Autor no encontrado' });
+        res.json({ mensaje: 'Autor actualizado', autor: autorActualizado });
     } catch (error) {
         res.status(500).json({ error: 'Error al actualizar autor' });
     }
@@ -34,7 +48,8 @@ router.put('/:id', async (req, res) => {
 // Eliminar un autor
 router.delete('/:id', async (req, res) => {
     try {
-        await Autor.findByIdAndDelete(req.params.id);
+        const autorEliminado = await Autor.findByIdAndDelete(req.params.id);
+        if (!autorEliminado) return res.status(404).json({ error: 'Autor no encontrado' });
         res.json({ mensaje: 'Autor eliminado' });
     } catch (error) {
         res.status(500).json({ error: 'Error al eliminar autor' });
@@ -42,6 +57,14 @@ router.delete('/:id', async (req, res) => {
 });
 
 module.exports = router;
+
+
+
+
+
+
+/*Define las rutas para crear, consultar, modificar y eliminar autores.*/
+
 
 
 /*
